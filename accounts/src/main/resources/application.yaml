@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: accounts
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+  datasource:
+      url: jdbc:postgresql://localhost:5432/ms-course
+      username: postgres
+      password: Shivam@24
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.jdbc.datasource.init: DEBUG
+
