@@ -4,6 +4,7 @@ import com.microservice.cards.constants.Constants;
 import com.microservice.cards.dto.CardsDto;
 import com.microservice.cards.dto.ResponseDto;
 import com.microservice.cards.service.ICardsService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class CardsController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ResponseDto> updateCardsDetail(@RequestBody CardsDto cardsDto){
+    public ResponseEntity<ResponseDto> updateCardsDetail(@Valid @RequestBody CardsDto cardsDto){
         boolean isUpdated = iCardsService.updateCardDetails(cardsDto);
         if(isUpdated){
             return  ResponseEntity
