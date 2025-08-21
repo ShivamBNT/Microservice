@@ -4,6 +4,7 @@ import com.microservice.accounts.constant.AccountConstants;
 import com.microservice.accounts.dto.CustomerDto;
 import com.microservice.accounts.dto.ResponseDto;
 import com.microservice.accounts.service.IAccountService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping(value = "/api",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
 
-
     private IAccountService iAccountService;
 
     public AccountController(IAccountService iAccountService) {
@@ -22,7 +22,7 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createAccount(@RequestBody CustomerDto customerDto){
+    public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto){
         iAccountService.createAccount(customerDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -45,7 +45,7 @@ public class AccountController {
      * @return
      */
     @PostMapping("/update")
-    public ResponseEntity<ResponseDto> fetchAccountDetails(@RequestBody CustomerDto customerDto){
+    public ResponseEntity<ResponseDto> fetchAccountDetails(@Valid @RequestBody CustomerDto customerDto){
         boolean isUpdated = iAccountService.updateAcount(customerDto);
         if(isUpdated){
             return ResponseEntity
